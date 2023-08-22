@@ -32,13 +32,13 @@ class RolesController extends Controller
             $today = carbon::create($val->tanggal_lahir);
 
             // dd($faker->dateTimeInInterval($today,"+ 29 Years")->format('Y-m-d'));
-            echo $sekolah[0];
+            echo " | " . $sekolah[0];
             echo " | " .$faker->streetName;
             echo " | " .$faker->city;
             echo " | " .$faker->dateTimeInInterval($today,'+ 7 years')->format('Y-m-d');
             echo " | " .$faker->dateTimeInInterval($today,'+ 13 years')->format('Y-m-d');
             echo " | " . $faker->numberBetween(70,100);
-            echo $val->nik . "_resume.pdf";
+            echo " | " . $val->nik . "_resume.pdf";
            
             echo "<br>";
         }
@@ -58,7 +58,7 @@ class RolesController extends Controller
                     // // echo " | " .$faker->phoneNumber;
                     // // echo " | " .$faker->email;
                     // // echo " | " .$faker->postcode;
-                    echo " | " ."<br>";
+                    // echo "<br>";
                 
                 }
         // $roles = Role::all();

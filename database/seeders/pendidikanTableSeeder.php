@@ -6,26 +6,32 @@ use Illuminate\Database\Seeder;
 
 use App\cv;
 use App\pendidikan;
+
+use Carbon\Carbon;
+use Faker\Factory as Faker;
 class pendidikanTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+ 
     public function run()
     {
-        $cv = cv::find(32);
+        $cv = cv::select("id","nik","tanggal_lahir")->get();
+        $faker = Faker::create("id_ID");
+        $sekolah = ["SD","SMP","SMA"];
+        
+        foreach($cv as $item) {
+            $today = carbon::create($item->tanggal_lahir);
 
-        $pen = new pendidikan;
-        $pen->jenjang = "SD";
-        $pen->nama = "Permata Hijau";
-        $pen->kota = "Kab. Bandung";
-        $pen->mulai = "2020-01-01";
-        $pen->mulai = "2026-01-01";
-        $pen->mulai = "08";
-        $pen->mulai = "2020-01-01.pdf";
-
-        $cv->pendidikans()->save($pen);
+            // echo $today;
+            $val = new pendidikan;
+            $val->jenjang = $sekolah[2];
+            $val->nama = $faker->streetName;
+            $val->kota = $faker->city;
+            $val->mulai = $faker->dateTimeInInterval($today,'+ 16 years')->format('Y-m-d');
+            $val->selesai = $faker->dateTimeInInterval($today,'+ 19 years')->format('Y-m-d');
+            $val->nilai = $faker->numberBetween(70,100);
+            $val->file = $item->nik."CV.pdf";
+            
+            $item->pendidikans()->save($val);
+        }
     }
 }
