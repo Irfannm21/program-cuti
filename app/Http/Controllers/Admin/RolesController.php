@@ -24,43 +24,31 @@ class RolesController extends Controller
         $cv = cv::select("id","nik","tanggal_lahir")->get();
         
         $faker = Faker::create("id_ID");
+        $result = $faker->randomElement($cv);
         // Faker untuk membedakan gender
-        $sekolah = ["SD","SMP","SMA"];
+        $jabatan = $faker->randomElement(["Operator","Staff","Administratasi","Karu","Kasie"]);
         
         $carbon1 = new Carbon();
-        foreach($cv as $val) {
-            $today = carbon::create($val->tanggal_lahir);
-
+        // foreach($cv as $val) {
+            $today = carbon::create($result->tanggal_lahir);
+            $kerja = $faker->dateTimeBetween($today,'+ 19 years')->format('Y-m-d');
+            $mulai = $faker->dateTimeBetween($kerja,'+ 10 years')->format('Y-m-d');
+            $stop = $faker->dateTimeBetween($mulai,'+ 40 years')->format('Y-m-d');
             // dd($faker->dateTimeInInterval($today,"+ 29 Years")->format('Y-m-d'));
-            echo " | " . $sekolah[0];
-            echo " | " .$faker->streetName;
+            
+            echo " | " . $faker->company;
+            echo " | " .$jabatan;
             echo " | " .$faker->city;
-            echo " | " .$faker->dateTimeInInterval($today,'+ 7 years')->format('Y-m-d');
-            echo " | " .$faker->dateTimeInInterval($today,'+ 13 years')->format('Y-m-d');
-            echo " | " . $faker->numberBetween(70,100);
-            echo " | " . $val->nik . "_resume.pdf";
+            echo " | " .$faker->randomNumber(7);
+            echo " | " .$mulai;
+            echo " | " .$stop;
+            echo " | " .$faker->sentence(5);
+            echo " | " .$result->nik."_Vaklaring.pdf";
+            
            
             echo "<br>";
-        }
-        for($i=0; $i<=10; $i++) {
-                
-                    // echo " | " .$sekolah[0];
-                    // echo " | " .$faker->streetName;
-                    // echo " | " .$faker->city;
-                    // // echo " | " ."Islam";
-                    // // echo " | " .$faker->city;
-                    // echo " | " .$faker->dateTimeBetween('1960-01-01','2000-01-31');
-                    // // echo " | " ."Menikah";
-                    // // echo " | " .$faker->state;
-                    // // echo " | " .$faker->city;
-                    // // echo " | " .$faker->buildingNumber;
-                    // // echo " | " .$faker->address;
-                    // // echo " | " .$faker->phoneNumber;
-                    // // echo " | " .$faker->email;
-                    // // echo " | " .$faker->postcode;
-                    // echo "<br>";
-                
-                }
+        // }
+        
         // $roles = Role::all();
 
         // return view('admin.roles.index', compact('roles'));

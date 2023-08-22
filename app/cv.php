@@ -14,4 +14,8 @@ class cv extends Model
     public function pendidikans() {
         return $this->hasMany('App\pendidikan');
     }
+
+    public function pengalamans() {
+        return $this->hasMany('App\Pengalaman');
+    }
 }
