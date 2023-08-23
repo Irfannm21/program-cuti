@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\DataCuti;
 use App\TransaksiCuti;
+use Carbon\CarbonPeriod;
+use Carbon\Carbon;
 
 use Faker\Factory as Faker;
 class TransaksiCutiTableSeeder extends Seeder
@@ -16,12 +18,22 @@ class TransaksiCutiTableSeeder extends Seeder
      */
     public function run()
     {
-        $result = DataCuti::findOrFail(1);
+        $mulai = carbon::create("2023-01-01");
+        $selesai = carbon::create("2023-01-02");
 
-        $val = new TransaksiCuti;
-        $val->mulai = "2023-01-01";
-        $val->selesai = "2023-01-01";
-        $val->alasan = "Keperluan Keluarga";
+        $periode = CarbonPeriod::create($mulai,$selesai);
+        $result = DataCuti::findOrFail(1);
+        foreach ($periode as $i => $date) {
+            $val = new TransaksiCuti;
+            $val->tanggal = $date;
+            $val->alasan = "Keperluan Keluarga";
+            $result->transaksiCutis()->save($val);
+        }
+
+
+       
+
+        
 
         $result->transaksiCutis()->save($val);
     }

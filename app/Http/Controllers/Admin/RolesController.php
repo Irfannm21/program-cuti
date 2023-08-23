@@ -15,39 +15,28 @@ use Symfony\Component\HttpFoundation\Response;
 use App\cv;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 class RolesController extends Controller
 {
     public function index()
     {
         abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $cv = cv::select("id","nik","tanggal_lahir")->get();
-        
-        $faker = Faker::create("id_ID");
-        $result = $faker->randomElement($cv);
-        // Faker untuk membedakan gender
-        $jabatan = $faker->randomElement(["Operator","Staff","Administratasi","Karu","Kasie"]);
-        
-        $carbon1 = new Carbon();
-        // foreach($cv as $val) {
-            $today = carbon::create($result->tanggal_lahir);
-            $kerja = $faker->dateTimeBetween($today,'+ 19 years')->format('Y-m-d');
-            $mulai = $faker->dateTimeBetween($kerja,'+ 10 years')->format('Y-m-d');
-            $stop = $faker->dateTimeBetween($mulai,'+ 40 years')->format('Y-m-d');
-            // dd($faker->dateTimeInInterval($today,"+ 29 Years")->format('Y-m-d'));
-            
-            echo " | " . $faker->company;
-            echo " | " .$jabatan;
-            echo " | " .$faker->city;
-            echo " | " .$faker->randomNumber(7);
-            echo " | " .$mulai;
-            echo " | " .$stop;
-            echo " | " .$faker->sentence(5);
-            echo " | " .$result->nik."_Vaklaring.pdf";
-            
-           
+        $mulai = carbon::create("2023-01-01");
+        $selesai = carbon::create("2023-01-02");
+
+        $periode = CarbonPeriod::create($mulai,$selesai);
+        foreach ($periode as $i => $date) {
+            echo "5009";
+            echo $date->format("Y m d");
             echo "<br>";
-        // }
+        }
+
+        // $dates = $periode->toArray();
+
+        // echo $mulai->diffInDays($selesai);
+        
+
         
         // $roles = Role::all();
 
