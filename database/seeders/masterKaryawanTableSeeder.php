@@ -30,8 +30,8 @@ class masterKaryawanTableSeeder extends Seeder
             $val = new masterKaryawan;
             $val->bagian_id = $result_bagian->id;
             $val->nip = $faker->randomNumber(4);
-            $val->no_kk = $faker->randomNumber(5);
-            $val->no_npwp = $faker->randomNumber(7);
+            $val->no_kk = $faker->numerify("###########");
+            $val->no_npwp = $faker->numerify("################");
             $val->no_kontak = $faker->phoneNumber(12);
             $val->tmk = "2023-01-01";
             $val->shift = $faker->randomElement(["NS","A","B","C"]);

@@ -13,4 +13,8 @@ class masterKaryawan extends Model
     public function cv() {
         return $this->hasOne("App\cv");
     }
+
+    public function cutis() {
+        return $this->hasMany('App\DataCuti');
+    }
 }
