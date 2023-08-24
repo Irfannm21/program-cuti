@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\TransaksiCuti;
+use App\masterKaryawan;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TransaksiCutiController extends Controller
+class MasterKaryawanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class TransaksiCutiController extends Controller
      */
     public function index()
     {
-        //
+        dd(Auth::guest());
     }
 
     /**
@@ -41,10 +42,10 @@ class TransaksiCutiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\TransaksiCuti  $transaksiCuti
+     * @param  \App\masterKaryawan  $masterKaryawan
      * @return \Illuminate\Http\Response
      */
-    public function show(TransaksiCuti $transaksiCuti)
+    public function show(masterKaryawan $masterKaryawan)
     {
         //
     }
@@ -52,10 +53,10 @@ class TransaksiCutiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TransaksiCuti  $transaksiCuti
+     * @param  \App\masterKaryawan  $masterKaryawan
      * @return \Illuminate\Http\Response
      */
-    public function edit(TransaksiCuti $transaksiCuti)
+    public function edit(masterKaryawan $masterKaryawan)
     {
         //
     }
@@ -64,10 +65,10 @@ class TransaksiCutiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TransaksiCuti  $transaksiCuti
+     * @param  \App\masterKaryawan  $masterKaryawan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TransaksiCuti $transaksiCuti)
+    public function update(Request $request, masterKaryawan $masterKaryawan)
     {
         //
     }
@@ -75,10 +76,10 @@ class TransaksiCutiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TransaksiCuti  $transaksiCuti
+     * @param  \App\masterKaryawan  $masterKaryawan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TransaksiCuti $transaksiCuti)
+    public function destroy(masterKaryawan $masterKaryawan)
     {
         //
     }

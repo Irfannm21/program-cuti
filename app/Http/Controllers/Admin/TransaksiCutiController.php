@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+
+
+use App\TransaksiCuti;
 use App\DataCuti;
 use Illuminate\Http\Request;
 
-class DataCutiController extends Controller
+class TransaksiCutiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,8 @@ class DataCutiController extends Controller
      */
     public function index()
     {
-        //
+        $results = TransaksiCuti::all();
+        return view("admin.transcuti.index",compact("results"));
     }
 
     /**
@@ -41,10 +46,10 @@ class DataCutiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\DataCuti  $dataCuti
+     * @param  \App\TransaksiCuti  $transaksiCuti
      * @return \Illuminate\Http\Response
      */
-    public function show(DataCuti $dataCuti)
+    public function show(TransaksiCuti $transaksiCuti)
     {
         //
     }
@@ -52,10 +57,10 @@ class DataCutiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\DataCuti  $dataCuti
+     * @param  \App\TransaksiCuti  $transaksiCuti
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataCuti $dataCuti)
+    public function edit(TransaksiCuti $transaksiCuti)
     {
         //
     }
@@ -64,10 +69,10 @@ class DataCutiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DataCuti  $dataCuti
+     * @param  \App\TransaksiCuti  $transaksiCuti
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataCuti $dataCuti)
+    public function update(Request $request, TransaksiCuti $transaksiCuti)
     {
         //
     }
@@ -75,10 +80,10 @@ class DataCutiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\DataCuti  $dataCuti
+     * @param  \App\TransaksiCuti  $transaksiCuti
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DataCuti $dataCuti)
+    public function destroy(TransaksiCuti $transaksiCuti)
     {
         //
     }

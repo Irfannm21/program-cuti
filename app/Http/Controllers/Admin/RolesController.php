@@ -21,22 +21,6 @@ class RolesController extends Controller
     public function index()
     {
         abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $mulai = carbon::create("2023-01-01");
-        $selesai = carbon::create("2023-01-02");
-
-        $periode = CarbonPeriod::create($mulai,$selesai);
-        foreach ($periode as $i => $date) {
-            echo "5009";
-            echo $date->format("Y m d");
-            echo "<br>";
-        }
-
-        // $dates = $periode->toArray();
-
-        // echo $mulai->diffInDays($selesai);
-        
-
         
         // $roles = Role::all();
 

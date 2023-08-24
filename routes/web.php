@@ -18,4 +18,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
 
+    // Master Karyawan
+    // Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::resource('/masters', 'MasterKaryawanController');
+
+    // Daftar Cuti
+    Route::resource('/cutis', 'DataCutiController');
+
+    // Transaksi Cuti
+    Route::resource('/trans_cutis', 'TransaksiCutiController');
 });

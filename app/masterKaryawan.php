@@ -11,7 +11,7 @@ class masterKaryawan extends Model
     protected $fillable = [];
 
     public function cv() {
-        return $this->hasOne("App\cv");
+        return $this->belongsTo("App\cv");
     }
 
     public function cutis() {

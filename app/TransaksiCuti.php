@@ -12,6 +12,6 @@ class TransaksiCuti extends Model
     protected $fillable = [];
 
     public function cuti() {
-        return $this->hasOne("App\DataCuti");
+        return $this->belongsTo("App\DataCuti","data_cuti_id");
     }
 }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\masterKaryawan;
+use App\Http\Controllers\Controller;
+use App\DataCuti;
 use Illuminate\Http\Request;
 
-class MasterKaryawanController extends Controller
+class DataCutiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class MasterKaryawanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\masterKaryawan  $masterKaryawan
+     * @param  \App\DataCuti  $dataCuti
      * @return \Illuminate\Http\Response
      */
-    public function show(masterKaryawan $masterKaryawan)
+    public function show(DataCuti $dataCuti)
     {
         //
     }
@@ -52,10 +53,10 @@ class MasterKaryawanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\masterKaryawan  $masterKaryawan
+     * @param  \App\DataCuti  $dataCuti
      * @return \Illuminate\Http\Response
      */
-    public function edit(masterKaryawan $masterKaryawan)
+    public function edit(DataCuti $dataCuti)
     {
         //
     }
@@ -64,10 +65,10 @@ class MasterKaryawanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\masterKaryawan  $masterKaryawan
+     * @param  \App\DataCuti  $dataCuti
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, masterKaryawan $masterKaryawan)
+    public function update(Request $request, DataCuti $dataCuti)
     {
         //
     }
@@ -75,10 +76,10 @@ class MasterKaryawanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\masterKaryawan  $masterKaryawan
+     * @param  \App\DataCuti  $dataCuti
      * @return \Illuminate\Http\Response
      */
-    public function destroy(masterKaryawan $masterKaryawan)
+    public function destroy(DataCuti $dataCuti)
     {
         //
     }

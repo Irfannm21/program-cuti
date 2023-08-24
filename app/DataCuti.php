@@ -12,10 +12,10 @@ class DataCuti extends Model
     protected $fillable = [];
 
     public function master() {
-        return $this->hasOne("App\masterKaryawan");
+        return $this->belongsTo("App\masterKaryawan","master_karyawan_id");
     }
 
     public function transaksiCutis() {
-        return $this->hasOne("App\TransaksiCuti");
+        return $this->hasMany("App\TransaksiCuti","transaksi_cuti_id");
     }
 }
