@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-
+use App\masterKaryawan;
 use App\TransaksiCuti;
 use App\DataCuti;
 use Illuminate\Http\Request;
@@ -29,7 +29,9 @@ class TransaksiCutiController extends Controller
      */
     public function create()
     {
-        //
+       $results = masterKaryawan::all();
+
+       return view("admin.transcuti.create",compact("results"));
     }
 
     /**
@@ -40,7 +42,7 @@ class TransaksiCutiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

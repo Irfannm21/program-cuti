@@ -2,8 +2,8 @@
 @section('content')
 @can('role_create')
     <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.roles.create") }}">
+        <div class="col-lg-12"> 
+            <a class="btn btn-success" href="{{ route("admin.trans_cutis.create") }}">
                 {{ trans('global.buat') }} {{ trans('cruds.karyawan.time_off') }}
             </a>
         </div>
@@ -25,9 +25,10 @@
                     <th width="10">
 
                     </th>
-                    <th>NIP</th>
                     <th>Nama</th>
+                    <th>Jenis</th>
                     <th>Tahun</th>
+                    <th>Tanggal</th>
                     <th>Keterangan</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -39,14 +40,17 @@
                     <td>
 
                     </td>
-                        <td>
-                          {{$item->cuti->master->nip}}
-                        </td>
-                        <td>
-                          {{$item->cuti->master->cv->nama}}
-                        </td>
+                    <td>
+                      {{$item->cuti->master->cv->nama}}
+                    </td>
+                    <td>
+                      {{$item->cuti->jenis}}
+                    </td>
                         <td>
                           {{date('Y',strtotime($item->cuti->tahun))}}
+                        </td>
+                        <td>
+                          {{date('d-m-Y',strtotime($item->tanggal))}}
                         </td>
                         <td>
                           {{$item->alasan}}
@@ -55,16 +59,8 @@
                           <span class="badge badge-warning badge-xs">{{$item->status}}</span>
                         </td>
                         <td>
-                          <div class="dropdown">
-                              <button class="btn btn-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
-                                Menu
-                              </button>
-                            <div class="dropdown-menu">
-                              <a href="#" class="btn-success dropdown-item">Terima</a>
-                              <a href="#" class="btn-success dropdown-item">Terima</a>
-                              <a href="#" class="btn-success dropdown-item">Terima</a>
-                            </div>
-                          </div>
+                         <a href="#" class="btn btn-success btn-xs">Disetujui</a>
+                         <a href="#" class="btn btn-danger btn-xs">Tangguhkan</a>
                         </td>
                       </tr>
                   @endforeach
@@ -111,7 +107,8 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    pageLength: 10,
+    height:100,
   });
   $('.datatable-Role:not(.ajaxTable)').DataTable(
       { buttons: dtButtons })

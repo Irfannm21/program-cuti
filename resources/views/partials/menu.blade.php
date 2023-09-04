@@ -96,6 +96,14 @@
                                 <i class="fa-fw fas fa-user-edit">
 
                                 </i>
+                                <span>{{ trans('cruds.karyawan.application_off') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route("admin.trans_cutis.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                                <i class="fa-fw fas fa-user-edit">
+
+                                </i>
                                 <span>{{ trans('cruds.karyawan.time_off') }}</span>
                             </a>
                         </li>
