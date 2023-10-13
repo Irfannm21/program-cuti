@@ -51,9 +51,10 @@ class TransaksiCutiController extends Controller
      * @param  \App\TransaksiCuti  $transaksiCuti
      * @return \Illuminate\Http\Response
      */
-    public function show(TransaksiCuti $transaksiCuti)
+    public function show(Request $request)
     {
-        //
+        return "Method Show";
+        // return masterKarya   wan::where("nip",$request->nip)->first();
     }
 
     /**
@@ -86,7 +87,17 @@ class TransaksiCutiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(TransaksiCuti $transaksiCuti)
-    {
-        //
+    { 
+        // the decision ID1401 the secret of relationship ID1525 
+    }
+
+    public function cari(Request $request) {
+        return masterKaryawan::where("nip",$request->val)->first();
+    }
+    
+    public function jenis(Request $request) {
+        $employe =  masterKaryawan::where('nip',$request->val_2)->first();
+        return Datacuti::where('jenis',$request->val)->where('jenis',$request->val)->get();
+        // return $employe->id;
     }
 }

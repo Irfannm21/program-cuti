@@ -73,6 +73,7 @@
 @section('scripts')
 @parent
 <script>
+
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('role_delete')
@@ -118,5 +119,7 @@
     });
 })
 
-</script>
+
+
+</script> 
 @endsection

@@ -26,5 +26,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('/cutis', 'DataCutiController');
 
     // Transaksi Cuti
+    Route::get('/trans_cutis/cari', 'TransaksiCutiController@cari')->name("trans_cutis.cari");   
+    Route::get('/trans_cutis/jenis', 'TransaksiCutiController@jenis')->name('trans_cutis.jenis');
     Route::resource('/trans_cutis', 'TransaksiCutiController');
 });

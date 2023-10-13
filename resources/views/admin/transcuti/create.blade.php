@@ -13,12 +13,11 @@
             @csrf
 
             <div class="form-group {{ $errors->has('nip') ? 'has-error' : '' }}">
-                <label for="nip">{{ trans('cruds.role.fields.permissions') }}*
-                    <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
-                <select name="nip[]" id="permissions" class="form-control select2" multiple="multiple" required>
-                    @foreach($results as $id => $permissions)
-                        <option value="{{ $id }}" {{ (in_array($id, old('nip', [])) || isset($role) && $role->permissions->contains($id)) ? 'selected' : '' }}>{{ $permissions->cv->nama }}</option>
+                <label for="nip">Nama Karyawan</label>
+                <select name="nip" id="nip" class="form-control select2" required>
+                    <option value=""></option>
+                    @foreach($results as $id => $result)
+                        <option value="{{ $result->nip }}" {{ (in_array($id, old('nip', [])) || isset($role) && $role->result->contains($id)) ? 'selected' : '' }}>{{ $result->cv->nama }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('permissions'))
@@ -37,8 +36,8 @@
                         <label for="jenis">Jenis Cuti</label>
                         <select name="jenis" id="jenis" class="form-control"> 
                             <option value="" selected>-- Pilih Jenis Cuti--</option>
-                            <option value="">Cuti Tahunan</option>
-                            <option value="">Cuti Besar</option>
+                            <option value="Cuti Tahunan">Cuti Tahunan</option>
+                            <option value="Cuti Besar">Cuti Besar</option>
                         </select>
                         @if($errors->has('jenis'))
                             <p class="help-block">
@@ -51,15 +50,14 @@
                     </div>
 
                     <div class="col-md-3">
-                        <label for="jenis">Tahun</label>
-                        <select name="jenis" id="jenis" class="form-control"> 
+                        <label for="tahun">Tahun</label>
+                        <select name="tahun" id="tahun" class="form-control"> 
                             <option value="" selected>-- Pilih Tahun Cuti--</option>
-                            <option value="">Tahun 2022 Sisa 5</option>
-                            <option value="">Tahun 2023 Sisa 7</option>
+                      
                         </select>
-                        @if($errors->has('jenis'))
+                        @if($errors->has('tahun'))
                             <p class="help-block">
-                                {{ $errors->first('jenis') }}
+                                {{ $errors->first('tahun') }}
                             </p>
                         @endif
                         <p class="helper-block">
@@ -68,11 +66,11 @@
                     </div>
 
                     <div class="col-md-3">
-                        <label for="tanggal">Dari Tanggal</label>
-                        <input type="date" id="tanggal" name="tanggal" class="form-control" value="{{ old('tanggal', isset($role) ? $role->tanggal : '') }}" required>
-                        @if($errors->has('tanggal'))
+                        <label for="awal">Dari awal</label>
+                        <input type="date" id="awal" name="awal" class="form-control" value="{{ old('awal', isset($role) ? $role->awal : '') }}" required>
+                        @if($errors->has('awal'))
                             <p class="help-block">
-                                {{ $errors->first('tanggal') }}
+                                {{ $errors->first('awal') }}
                             </p>
                         @endif
                         <p class="helper-block">
@@ -81,11 +79,11 @@
                     </div>
 
                     <div class="col-md-3">
-                        <label for="tanggal">Sampai Tanggal</label>
-                        <input type="date" id="tanggal" name="tanggal" class="form-control" value="{{ old('tanggal', isset($role) ? $role->tanggal : '') }}" required>
-                        @if($errors->has('tanggal'))
+                        <label for="akhir">Sampai Tanggal</label>
+                        <input type="date" id="akhir" name="akhir" class="form-control" value="{{ old('akhir', isset($role) ? $role->akhir : '') }}" required>
+                        @if($errors->has('akhir'))
                             <p class="help-block">
-                                {{ $errors->first('tanggal') }}
+                                {{ $errors->first('akhir') }}
                             </p>
                         @endif
                         <p class="helper-block">
@@ -116,4 +114,47 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function () {
+    $(document).on("change","#nip", function() {
+        $.ajax({
+            method: "GET",
+            url: '{{url('admin/trans_cutis/cari')}}',
+            data : {
+                val : $(this).val()
+            },
+            success : function(response) {
+                console.log(204,response)
+            }
+        })
+    });
+    
+    $(document).on("change","#jenis", function() {
+        $.ajax({
+            method: "GET",
+            url: '{{url('admin/trans_cutis/jenis')}}',
+            data : {
+                val : $(this).val(),
+                val_2 : $("#nip").val()
+            },
+            success: function(response) {
+                console.log(204,response)
+                let opt = '';
+                    opt += '<option> Pilih Tahun Cuti</option>';
+                for (let value of response) {
+                    let date = new Date(value.tahun);
+                        date = date.getFullYear();
+                    opt += `<option>${date}</option>`
+                }
+                $('#tahun').html(opt);
+            }
+        })
+    });
+    
+}) 
+</script>
+
 @endsection
